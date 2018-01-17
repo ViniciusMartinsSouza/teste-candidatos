@@ -140,4 +140,56 @@ class Venda
     {
         return $this->comissao;
     }
+
+    /**
+     * Get Empresa
+     * 
+     * @return Empresa
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
+
+    /**
+     * Set Empresa
+     * 
+     * @param Empresa $empresa
+     * 
+     * @return Venda
+     */
+    public function setEmpresa($empresa)
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+
+    /**
+     * Get Cliente
+     * 
+     * @return Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
+    }
+
+
+    /**
+     * Set Cliente
+     * 
+     * @param Cliente $cliente
+     * 
+     * @return Venda
+     */
+    public function setCliente($cliente)
+    {
+        $this->cliente = $cliente;
+        
+        return $this;
+    }
+
+
 }

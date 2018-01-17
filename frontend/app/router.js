@@ -59,6 +59,11 @@ Router.map(function() {
         this.route('editar', {path: '/editar/:id'});
         this.route('excluir', {path: '/excluir/:id'});
     });
+    this.route('vendas', {}, function() {
+        this.route('nova', {});
+        this.route('editar', {path: '/editar/:id'});
+        this.route('excluir', {path: '/excluir/:id'});
+    });
 });
 
 export default Router;
