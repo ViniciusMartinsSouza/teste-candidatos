@@ -9,14 +9,10 @@
     </div>
     <div class="panel-body">
 
-        {{#each errors as |error|}}
-        <div class="error">
-            {{error}}
-        </div>
-        {{/each}} 
         
         {{#unless model.isValid }}
-         <div class="error" style="color:red">Erro ao salvar {{teste}} </div>
+         <div class="error" style="color:red">Erro ao salvar </div>
+                <div class="error" style="color:red">{{erro}}</div>
         {{/unless }}
         
          {{#bs-form model=model action="submit" as |form|}}

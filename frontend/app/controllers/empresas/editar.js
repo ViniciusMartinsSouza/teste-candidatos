@@ -9,6 +9,17 @@ export default Controller.extend({
             this.get('model').save().then(() => {
                 this.get('notifications').add('Empresa foi editada', 'building');
                 this.transitionToRoute('empresas');
+            }).catch((adapterError) => {
+
+                let object = adapterError.errors[0];
+                let erroMsg = "";
+                for (var property in object) {
+                    if (object.hasOwnProperty(property)) {
+                        erroMsg += property + " " + object[property];
+                    }
+                }
+                this.set('erro', erroMsg);
+                
             });
         }
     }

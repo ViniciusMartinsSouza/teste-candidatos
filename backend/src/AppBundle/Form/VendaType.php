@@ -15,7 +15,7 @@ class VendaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('data')
+            ->add('data', 'datetime')
             ->add('valor')
             ->add('comissao')
             ->add('empresa')

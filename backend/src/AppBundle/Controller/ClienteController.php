@@ -133,6 +133,17 @@ class ClienteController extends FOSRestController
             $em->flush();
             return $this->view(['cliente' => $entity], Response::HTTP_OK);
         }
+
+        $errors = array();
+
+        foreach ($form as $child){
+            foreach($child-> getErrors() as $error){
+                $errors[$child->getName()][] = $error->getMessage();
+            }
+        }
+        $response = array();
+        $response[] = $errors;
+        return $this->view(["errors" => $response], Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /**

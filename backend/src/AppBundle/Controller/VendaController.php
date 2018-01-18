@@ -78,9 +78,24 @@ class VendaController extends FOSRestController
     {
         $entity = new Venda();
         
-        $cliente =  $this->getDoctrine()->getRepository('AppBundle:Cliente')->findBy(['id' => $request->get('cliente')]);
-        $empresa = $this->getDoctrine()->getRepository('AppBundle:Empresa')->findBy(['id' => $request->get('empresa')]);
-        echo('teste');
+        $logger = $this->get('logger');
+
+        // $logger->info($request->get('cliente'));
+
+        $cliente =  $this->getDoctrine()->getRepository('AppBundle:Cliente')->find($request->get('cliente'));
+        $empresa =  $this->getDoctrine()->getRepository('AppBundle:Empresa')->find($request->get('empresa'));
+        
+        $logger->info($request->get('cliente'));
+        $logger->info($request->get('empresa'));
+
+        if(!$cliente){
+            throw $this->createNotFoundException('Cliente inválido');
+        }
+
+        if(!$empresa){
+            throw $this->createNotFoundException('Empresa inválida');
+        }
+
         $entity->setCliente($cliente);
         $entity->setEmpresa($empresa);
 
@@ -119,6 +134,22 @@ class VendaController extends FOSRestController
      */
     public function putVendaAction(Request $request, $id)
     {
+
+        $cliente =  $this->getDoctrine()->getRepository('AppBundle:Cliente')->find($request->get('cliente'));
+        $empresa =  $this->getDoctrine()->getRepository('AppBundle:Empresa')->find($request->get('empresa'));
+        
+
+        if(!$cliente){
+            throw $this->createNotFoundException('Cliente inválido');
+        }
+
+        if(!$empresa){
+            throw $this->createNotFoundException('Empresa inválida');
+        }
+        
+        $entity->setCliente($cliente);
+        $entity->setEmpresa($empresa);
+
         $entity = $this->getEntity($id);
         $form = $this->createForm(new VendaType(), $entity);
         $form->bind($request->get('venda'));
